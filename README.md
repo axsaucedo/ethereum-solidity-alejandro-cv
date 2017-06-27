@@ -135,5 +135,12 @@ instance.getTwitter();
 
 We can see the output has been changed now!
 
+# Testing
+
+To run the tests simply run:
+
+```
+truffle test
+```
 
 
