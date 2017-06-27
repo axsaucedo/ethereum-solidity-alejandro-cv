@@ -21,7 +21,7 @@ contract CVAlejandro is Mortal, CVExtender {
     // Social
     string _linkedIn;
     string _twitter;
-    string _github;
+    string _gitHub;
 
 
 
@@ -36,7 +36,7 @@ contract CVAlejandro is Mortal, CVExtender {
 
         // Social
         _linkedIn = "http://linkedin.com/in/axsaucedo";
-        _github = "https://github.com/axsauze";
+        _gitHub = "https://github.com/axsauze";
         _twitter = "https://twitter.com/axsaucedo";
 
         // Experience
@@ -145,11 +145,11 @@ contract CVAlejandro is Mortal, CVExtender {
         _education.push(education);
     }
 
-    function getLanguages() constant returns(string) {
+    function getLanguage() constant returns(string) {
         return strArrayConcat(_language);
     }
 
-    function addLanguages(string language) onlyOwner {
+    function addLanguage(string language) onlyOwner {
         _language.push(language);
     }
 
@@ -157,16 +157,16 @@ contract CVAlejandro is Mortal, CVExtender {
         return _linkedIn;
     }
 
-    function setLinkedin(string linkedIn) onlyOwner {
+    function setLinkedIn(string linkedIn) onlyOwner {
         _linkedIn = linkedIn;
     }
 
-    function getGithub() constant returns(string) {
-        return _github;
+    function getGitHub() constant returns(string) {
+        return _gitHub;
     }
 
-    function setGithub(string github) onlyOwner {
-        _github = github;
+    function setGitHub(string gitHub) onlyOwner {
+        _gitHub = gitHub;
     }
 
     function getTwitter() constant returns(string) {

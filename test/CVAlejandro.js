@@ -19,56 +19,105 @@ contract("CVAlejandro.sol", function (accounts) {
     });
   }
 
-  it("should correctly add new education", function () {
 
-    return CVAlejandro.deployed().then(function (instance) {
 
-      return checkModifierFunction(
-          "TEST_EDUCATION",
-          instance.getEducation,
-          instance.addEducation,
-          function (initial, newValue, result) {
-            var expected = initial + newValue + "\n";
-            return assert.equal(expected, result);
-          });
-    });
-  });
+  var add_attributes = ["Experience", "Education", "Language"];
 
-  it("should correctly add new experience", function () {
+  for (var i in add_attributes) {
 
-    return CVAlejandro.deployed().then(function (instance) {
+    var attribute = add_attributes[i];
 
-      return checkModifierFunction(
-          "TEST_EXPERIENCE",
-          instance.getExperience,
-          instance.addExperience,
-          function (initial, newValue, result) {
-            var expected = initial + newValue + "\n";
-            return assert.equal(expected, result);
-          });
+    (function (attribute) {
+      it("should correctly get and add " + attribute, function () {
 
-    });
-  });
+        return CVAlejandro.deployed().then(function (instance) {
 
-  it("should correctly add new language", function () {
+            return checkModifierFunction(
+                attribute,
+                instance["get" + attribute],
+                instance["add" + attribute],
+                function (initial, newValue, result) {
+                  var expected = initial + newValue + "\n";
+                  return assert.equal(expected, result);
+                });
+        });
+      });
+    })(attribute);
 
-    return CVAlejandro.deployed().then(function (instance) {
+    (function (attribute) {
 
-      return checkModifierFunction(
-          "TEST_LANGUAGE",
-          instance.getLanguage,
-          instance.addLanguage,
-          function (initial, newValue, result) {
-            var expected = initial + newValue + "\n";
-            return assert.equal(expected, result);
-          });
+      it("should not allow adder " + attribute + " to be ran as non-owner account", function () {
+        // Changing account to a different one
+        web3.eth.defaultAccount = web3.eth.accounts[2];
 
-    });
-  });
+        return CVAlejandro.deployed().then(function (instance) {
 
-  it("Should not allow any of the setter accounts to be called by anyone other than the owner", function () {
+          return checkModifierFunction(
+                  attribute,
+                  instance["get" + attribute],
+                  (function (attribute) {
+                    return function () {
+                      web3.eth.sendTransaction({ from: web3.eth.accounts[2], data: instance["add" + attribute] });
+                    };
+                  })(attribute),
+                  function (initial, newValue, result) {
+                    return assert.equal(initial, result);
+                  });
+        });
+      });
 
-  });
+    })(attribute);
+
+  }
+
+
+  var set_attributes = ["Email", "Name", "Summary", "LinkedIn", "GitHub", "Twitter", "Address", "Description", "Title"];
+
+  for (var i in set_attributes) {
+
+    var set_attribute = set_attributes[i];
+
+    (function (attribute) {
+      it("should correctly get and set " + set_attribute, function () {
+
+        return CVAlejandro.deployed().then(function (instance) {
+
+            return checkModifierFunction(
+                set_attribute,
+                instance["get" + set_attribute],
+                instance["set" + set_attribute],
+                function (initial, newValue, result) {
+                  return assert.equal(newValue, result);
+                });
+        });
+      });
+    })(attribute);
+
+
+    (function (attribute) {
+
+      it("should not allow setter " + attribute + " to be ran as non-owner account", function () {
+        // Changing account to a different one
+        web3.eth.defaultAccount = web3.eth.accounts[2];
+
+        return CVAlejandro.deployed().then(function (instance) {
+
+          return checkModifierFunction(
+                  attribute,
+                  instance["get" + attribute],
+                  (function (attribute) {
+                    return function () {
+                      web3.eth.sendTransaction({ from: web3.eth.accounts[2], data: instance["set" + attribute] });
+                    };
+                  })(attribute),
+                  function (initial, newValue, result) {
+                    return assert.equal(initial, result);
+                  });
+        });
+      });
+
+    })(attribute);
+  }
 });
 
 
