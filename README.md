@@ -1,4 +1,4 @@
-# Eth Alejandro CV
+# Ethereum Solidity Alejandro CV
 
 This is a repository containing my CV in the Ethereum Blockchain, together with a web interface to visualise it.
 
@@ -96,7 +96,7 @@ Once you are in the console, we can start loading the contract. First and formos
 
 The output of this command is saved in the file `build/contracts/CVAlejandro.json`. We open this file, and from the JSOn object we copy the entire array in the ABI property:
 
-``` json
+``` javascript
 {
   "contract_name": "CVAlejandro",
   "abi": [ ... ] // <- This array, copy it!
