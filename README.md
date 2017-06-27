@@ -1,6 +1,6 @@
 # Ethereum Solidity Alejandro CV
 
-This is a repository containing my CV in the Ethereum Blockchain, together with a web interface to visualise it.
+This is a repository containing my CV in the Ethereum Blockchain, together with a web interface to visualise it, located in
 
 # Installing
 

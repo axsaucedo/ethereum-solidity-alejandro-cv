@@ -149,7 +149,7 @@ contract CVAlejandro is Mortal, CVExtender {
         return strArrayConcat(_language);
     }
 
-    function setLanguages(string language) onlyOwner {
+    function addLanguages(string language) onlyOwner {
         _language.push(language);
     }
 
