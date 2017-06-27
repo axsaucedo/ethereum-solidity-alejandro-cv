@@ -9,7 +9,7 @@ contract Owned {
         }
     }
 
-    function owned() {
+    function Owned() {
         owner = msg.sender;
     }
 }
