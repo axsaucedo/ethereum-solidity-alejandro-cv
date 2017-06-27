@@ -65,9 +65,50 @@ contract("CVAlejandro.sol", function (accounts) {
                   });
         });
       });
+    });
+
+    (function (attribute) {
+
+      it("should have content in " + attribute, function () {
+        // Changing account to a different one
+        web3.eth.defaultAccount = web3.eth.accounts[2];
+
+        return CVAlejandro.deployed().then(function (instance) {
+
+          return instance["get" + attribute]();
+
+        }).then(function (result) {
+
+          assert.notEqual("", result);
+
+        });
+
+      });
 
     })(attribute);
 
+
+    (function (attribute) {
+
+      it("should have content in " + attribute, function () {
+        // Changing account to a different one
+        web3.eth.defaultAccount = web3.eth.accounts[2];
+
+        return CVAlejandro.deployed().then(function (instance) {
+
+          return checkModifierFunction(
+              attribute,
+              instance["get" + attribute],
+              instance["pop" + attribute],
+              function (initial, newValue, result) {
+                var expected = initial.replace(/(\n).+\n$|^.*\n$/, "$1");
+                return assert.equal(result, expected);
+              });
+        });
+
+      });
+
+    })(attribute);
   }
 
 
@@ -77,7 +118,7 @@ contract("CVAlejandro.sol", function (accounts) {
 
     var set_attribute = set_attributes[i];
 
-    (function (attribute) {
+    (function (set_attribute) {
       it("should correctly get and set " + set_attribute, function () {
 
         return CVAlejandro.deployed().then(function (instance) {
@@ -91,32 +132,50 @@ contract("CVAlejandro.sol", function (accounts) {
                 });
         });
       });
-    })(attribute);
+    })(set_attribute);
 
 
-    (function (attribute) {
+    (function (set_attribute) {
 
-      it("should not allow setter " + attribute + " to be ran as non-owner account", function () {
+      it("should not allow setter " + set_attribute + " to be ran as non-owner account", function () {
         // Changing account to a different one
         web3.eth.defaultAccount = web3.eth.accounts[2];
 
         return CVAlejandro.deployed().then(function (instance) {
 
           return checkModifierFunction(
-                  attribute,
-                  instance["get" + attribute],
-                  (function (attribute) {
+                  set_attribute,
+                  instance["get" + set_attribute],
+                  (function (set_attribute) {
                     return function () {
-                      web3.eth.sendTransaction({ from: web3.eth.accounts[2], data: instance["set" + attribute] });
+                      web3.eth.sendTransaction({ from: web3.eth.accounts[2], data: instance["set" + set_attribute] });
                     };
-                  })(attribute),
+                  })(set_attribute),
                   function (initial, newValue, result) {
                     return assert.equal(initial, result);
                   });
         });
       });
 
-    })(attribute);
+    })(set_attribute);
+
+
+    (function (set_attribute) {
+
+      it("should have content in " + set_attribute, function () {
+        // Changing account to a different one
+        web3.eth.defaultAccount = web3.eth.accounts[2];
+
+        return CVAlejandro.deployed().then(function (instance) {
+
+          return instance["get" + set_attribute]();
+
+        }).then(function (result) {
+          assert.notEqual("", result);
+        });
+      });
+
+    })(set_attribute);
   }
 });
 

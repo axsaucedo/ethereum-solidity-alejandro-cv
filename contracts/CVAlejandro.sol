@@ -33,6 +33,7 @@ contract CVAlejandro is Mortal, CVExtender {
         _link = "https://github.com/axsauze/ethereum-solidity-cv-contract";
         _description = "CTO. Manager. Engineer.";
         _title = "Alejandro ETH CV";
+        _summary = "My experience ranges from chief technology officer, to engineering manager, to hands on software/devops engineer at startups and tech giants. I have designed and led the development of multiple software projects, and I have coordinated multiple national and global initiatives. I have deep technical knowledge, as well as managerial, leadership and people skills. I am highly driven by impact, and I strongly abide by my values.";
 
         // Social
         _linkedIn = "http://linkedin.com/in/axsaucedo";
@@ -65,6 +66,12 @@ contract CVAlejandro is Mortal, CVExtender {
     }
 
     // UTIL
+
+    function popFromStringArray(string[] storage array) internal {
+        if(array.length < 1) return;
+
+        array.length--;
+    }
 
     function strArrayConcat(string[] storage array) internal returns (string){
 
@@ -137,6 +144,10 @@ contract CVAlejandro is Mortal, CVExtender {
         _experience.push(experience);
     }
 
+    function popExperience() onlyOwner {
+        popFromStringArray(_experience);
+    }
+
     function getEducation() constant returns(string) {
         return strArrayConcat(_education);
     }
@@ -145,12 +156,20 @@ contract CVAlejandro is Mortal, CVExtender {
         _education.push(education);
     }
 
+    function popEducation() onlyOwner {
+        popFromStringArray(_education);
+    }
+
     function getLanguage() constant returns(string) {
         return strArrayConcat(_language);
     }
 
     function addLanguage(string language) onlyOwner {
         _language.push(language);
+    }
+
+    function popLanguage() onlyOwner {
+        popFromStringArray(_language);
     }
 
     function getLinkedIn() constant returns(string) {
