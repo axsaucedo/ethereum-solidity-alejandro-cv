@@ -1,10 +1,10 @@
 # Ethereum Solidity Alejandro CV
 
-[CVAlejandro Title](https://github.com/axsauze/ethereum-solidity-alejandro-cv/blob/master/assets/title.png?raw=true)
+![https://github.com/axsauze/ethereum-solidity-alejandro-cv/blob/master/assets/title.png?raw=true][https://github.com/axsauze/ethereum-solidity-alejandro-cv/blob/master/assets/title.png?raw=true]
 
 This is a repository containing my CV in the Ethereum Blockchain, together with a web interface to visualise it, located in
 
-[CVAlejandro Body](https://github.com/axsauze/ethereum-solidity-alejandro-cv/blob/master/assets/body.png?raw=true)
+![CVAlejandro Body][https://github.com/axsauze/ethereum-solidity-alejandro-cv/blob/master/assets/body.png?raw=true]
 
 
 # Installing
@@ -148,4 +148,5 @@ To run the tests simply run:
 truffle test
 ```
 
-
+https://github.com/axsauze/ethereum-solidity-alejandro-cv/blob/master/assets/title.png?raw=true
+[https://github.com/axsauze/ethereum-solidity-alejandro-cv/blob/master/assets/title.png?raw=true]: https://github.com/axsauze/ethereum-solidity-alejandro-cv/blob/master/assets/title.png?raw=true
