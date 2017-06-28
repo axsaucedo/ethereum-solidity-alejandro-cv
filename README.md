@@ -1,6 +1,11 @@
 # Ethereum Solidity Alejandro CV
 
+[https://github.com/axsauze/ethereum-solidity-alejandro-cv/blob/master/assets/title.png?raw=true]()
+
 This is a repository containing my CV in the Ethereum Blockchain, together with a web interface to visualise it, located in
+
+[https://github.com/axsauze/ethereum-solidity-alejandro-cv/blob/master/assets/body.png?raw=true]()
+
 
 # Installing
 
